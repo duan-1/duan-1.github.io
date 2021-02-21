@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>端言端语 🌠</title>
+  
+  
+  <link href="https://www.secrebase.cn/atom.xml" rel="self"/>
+  
+  <link href="https://www.secrebase.cn/"/>
+  <updated>2021-02-11T15:59:45.000Z</updated>
+  <id>https://www.secrebase.cn/</id>
+  
+  <author>
+    <name>Duan</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hello World!</title>
+    <link href="https://www.secrebase.cn/posts/1c291ca3/"/>
+    <id>https://www.secrebase.cn/posts/1c291ca3/</id>
+    <published>2021-02-11T15:50:45.000Z</published>
+    <updated>2021-02-11T15:59:45.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>&emsp;&emsp;之前本来写过一段时间了，因为电脑迫不得已重装系统，导致文件都丢失了。正好在重装之前，我在使用过程中给自己埋了许多坑，重装之后相当于获得了一台新的电脑，还有一丝开心。</p><p>&emsp;&emsp;于是乎博客也重新搭建了一个。初期时，试过了许多的博客框架，像 Gridea 、Hugo 、Typecho 等。兜兜转转还是回到了 Hexo 。</p><p>&emsp;&emsp;最后，今天是除夕，在农历新年到来之际，立下一个 Flag ：希望在新的一年可以多谢一些博文，更加努力的学习。</p><p>&emsp;&emsp;<font color="red"><strong>除夕吉祥</strong></font></p>]]></content>
+    
+    
+    <summary type="html">卡在新春前夕的第一篇文章</summary>
+    
+    
+    
+    <category term="duan的碎碎念" scheme="https://www.secrebase.cn/categories/duan%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
+    
+    
+    <category term="Flag" scheme="https://www.secrebase.cn/tags/Flag/"/>
+    
+  </entry>
+  
+</feed>
