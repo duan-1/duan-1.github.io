@@ -3,11 +3,11 @@
   <title>端言端语 🌠</title>
   
   
-  <link href="https://www.secrebase.cn/atom.xml" rel="self"/>
+  <link href="https://secrebase.cn/atom.xml" rel="self"/>
   
-  <link href="https://www.secrebase.cn/"/>
+  <link href="https://secrebase.cn/"/>
   <updated>2021-02-11T15:51:45.000Z</updated>
-  <id>https://www.secrebase.cn/</id>
+  <id>https://secrebase.cn/</id>
   
   <author>
     <name>Duan</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Hello World!</title>
-    <link href="https://www.secrebase.cn/posts/1c291ca3/"/>
-    <id>https://www.secrebase.cn/posts/1c291ca3/</id>
+    <link href="https://secrebase.cn/posts/1c291ca3/"/>
+    <id>https://secrebase.cn/posts/1c291ca3/</id>
     <published>2021-02-11T15:51:45.000Z</published>
     <updated>2021-02-11T15:51:45.000Z</updated>
     
@@ -30,10 +30,10 @@
     
     
     
-    <category term="duan的碎碎念" scheme="https://www.secrebase.cn/categories/duan%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
+    <category term="duan的碎碎念" scheme="https://secrebase.cn/categories/duan%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
     
     
-    <category term="Flag" scheme="https://www.secrebase.cn/tags/Flag/"/>
+    <category term="Flag" scheme="https://secrebase.cn/tags/Flag/"/>
     
   </entry>
   
