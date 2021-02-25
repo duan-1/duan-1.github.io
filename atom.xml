@@ -64,4 +64,27 @@
     
   </entry>
   
+  <entry>
+    <title>小米路由器mini刷写不死breed</title>
+    <link href="https://secrebase.cn/posts/b5f8128e/"/>
+    <id>https://secrebase.cn/posts/b5f8128e/</id>
+    <published>2020-09-16T14:44:48.000Z</published>
+    <updated>2021-02-25T07:22:01.000Z</updated>
+    
+    <content type="html"><![CDATA[<img src="https://gitee.com/duan1104/img/raw/master/img/mini-breed-cover.png" style="zoom:80%;" / loading="lazy"><a id="more"></a><div class="primary"><blockquote><p>家里正好闲置了小米路由器mini，带到学校后研究了一下，发现可以刷第三方固件焕发它的第二春，正好记录一下折腾的过程。</p></blockquote></div><h2 id="一、刷入开发版固件"><a href="#一、刷入开发版固件" class="headerlink" title="一、刷入开发版固件"></a>一、刷入开发版固件</h2><blockquote><p>小米路由器 mini 、U 盘、小米 WiFi（手机 app ）、ssh 工具（ putty 、Xshell 或者系统自带的 cmd 也可以）、WinSCP 。</p><p>PS：可以事先将软件下载好。</p></blockquote><p>&emsp;&emsp;先去到官网下载开发版 ROM ：<a href="http://miwifi.com/miwifi_download.html">http://miwifi.com/miwifi_download.html</a> ;</p><p><img src="https://gitee.com/duan1104/img/raw/master/img/mini-develope.png" loading="lazy"></p><p>然后将下载的文件重命名为 <code>miwifi.bin</code> ，先将 U盘格式化为 FAT / FAT32 格式，然后将 <code>miwifi.bin</code> 放在 U盘根目录下面。</p><ol><li><p>断开路由器的电源，将 U盘插入 USB 接口</p></li><li><p>用牙签按住 reset 按钮不松开的同时插上电源，指示灯变为红色闪烁状态即可松开 reset 键</p></li><li><p>等待大约 3 - 6 分钟，待刷机完成后路由器会自动重启，指示灯恢复为蓝色刷机完成</p></li></ol><p><img src="https://gitee.com/duan1104/img/raw/master/img/mini-mode.png" loading="lazy"></p><h2 id="二、开启-SSH-功能"><a href="#二、开启-SSH-功能" class="headerlink" title="二、开启 SSH 功能"></a>二、开启 SSH 功能</h2><p>&emsp;&emsp;先将刚刚刷好的路由器简单设置好，然后连接WiFi后打开<strong>小米WiFi</strong>（手机 app ）路由器绑定至自己的小米账号下面，否则是无法开启 SSH 功能的。进入到官网下载 SSH 工具，找到刚刚绑定的路由器并下载工具包，会得到一个 <code>miwifi_ssh.bin</code> 的文件。然后将该文件放在根目录下，同时U盘根目录有且仅有一个后缀为 <code>bin</code> 的文件。然后按照刷机的操作再进行一次，等待 1 - 2 分钟刷机完成。</p><p><img src="https://gitee.com/duan1104/img/raw/master/img/ssh-tool.png" loading="lazy"></p><h2 id="三、刷入-breed"><a href="#三、刷入-breed" class="headerlink" title="三、刷入 breed"></a>三、刷入 breed</h2><p>&emsp;&emsp;先下载 breed ：<a href="https://breed.hackpascal.net/">https://breed.hackpascal.net/</a> ，这是由恩山大神写的，breed 又叫不死 uboot ，刷完就可以任意刷机了，不用担心路由器变砖。找到 <code>breed-mt7620-xiaomi-mini.bin</code> ，就是小米路由器 mini 的 breed 。</p><p><img src="https://gitee.com/duan1104/img/raw/master/img/mini-breed.png" loading="lazy"></p><p>&emsp;&emsp;此时用电脑使用 SSH 工具连接路由器，我以 cmd 为例，按 win + R 键后输入 cmd 后回车，就会弹出一个命令窗口；输入 <code>ssh root@192.168.31.1</code> ，有提示就填 <code>yes</code> 然后回车，就会要你输入刚刚 SSH 网页那里的 root 密码，输入密码是不显示，不用担心是自己没有输入成功，直接回车就会连接上路由器。</p><p><img src="https://gitee.com/duan1104/img/raw/master/img/mini-cmd-demo.png" loading="lazy"></p><p>&emsp;&emsp;再打开 WinSCP ，文件协议选择 <code>SCP</code>  主机名填入 <code>192.168.31.1</code> ，用户名为  <code>root</code> ，密码为刚刚的 SSH 密码。</p><p><img src="https://gitee.com/duan1104/img/raw/master/img/mini-WinSCP.png" loading="lazy"></p><p>&emsp;&emsp;登录进去后，将之前下载的 breed 文件，上传到根目录的 <code>tmp</code> 目录下面。</p><p><img src="https://gitee.com/duan1104/img/raw/master/img/upload-breed.png" loading="lazy"></p><p>&emsp;&emsp;返回 <code>cmd</code> 窗口，输入下面的命令：</p><pre class="language-none"><code class="language-none">cd &#x2F;tmp&#x2F;mtd -r write breed-mt7620-xiaomi-mini.bin Bootloader</code></pre><p><img src="https://gitee.com/duan1104/img/raw/master/img/mini-write-breed.png" loading="lazy"></p><p>&emsp;&emsp;等路由器重启之后，路由器就会进入 breed 恢复控制台，就可以随心随意的刷第三方固件啦~！如果想继续进入小米官方固件，就在 <code>固件启动设置</code> 的 <code>固件类型</code> 选择 <code>小米Mini</code> ，然后保存之后就可以进入小米的官方固件了。</p>]]></content>
+    
+    
+    <summary type="html">输入 breed 是小米路由器 mini 刷写第三方固件基本条件，手把手教你如何刷入不死 breed ，然后就可以激情的折腾第三方固件啦！</summary>
+    
+    
+    
+    <category term="瞎折腾" scheme="https://secrebase.cn/categories/%E7%9E%8E%E6%8A%98%E8%85%BE/"/>
+    
+    
+    <category term="小米路由器mini" scheme="https://secrebase.cn/tags/%E5%B0%8F%E7%B1%B3%E8%B7%AF%E7%94%B1%E5%99%A8mini/"/>
+    
+    <category term="breed" scheme="https://secrebase.cn/tags/breed/"/>
+    
+  </entry>
+  
 </feed>

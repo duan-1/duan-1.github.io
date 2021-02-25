@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="Duan"><meta name="copyright" content="Duan"><meta name="generator" content="Hexo 5.3.0"><meta name="theme" content="hexo-theme-yun"><title>小米路由器mini刷写不死breed | 端言端语 🌠</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.24/dist/yun/yun-markdown.min.css"><script src="//at.alicdn.com/t/font_1140697_ed8vp4atwoj.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><link id="light-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism.css" media="(prefers-color-scheme: light)"><link id="dark-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism-tomorrow.css" media="(prefers-color-scheme: dark)"><link rel="shortcut icon" type="image/svg+xml" href="/bee.svg"><link rel="mask-icon" href="/bee.svg" color="#0078E7"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"hostname":"secrebase.cn","root":"/","title":"端言端语","version":"1.5.1","mode":"time","copycode":true,"page":{"isPost":true},"anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"algolia":{"appID":"4VGOIUW3DM","apiKey":"746ffdde93d68f0415addbeae5622fcc","indexName":"myblog","hits":{"per_page":10},"labels":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容: ${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},"fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194","3, 28, 95","0, 8, 55"]}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/utils.js"></script><script src="/js/hexo-theme-yun.js"></script><link rel="alternate" href="/atom.xml" title="端言端语 🌠" type="application/atom+xml"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="preconnect" href="https://www.google-analytics.com" crossorigin><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BLCRYTNX7"></script><script>if (CONFIG.hostname === location.hostname) {
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7BLCRYTNX7');
+}</script><script data-ad-client="ca-pub-7949493060192576" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(function(){
+  var bp = document.createElement('script');
+  var curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else {
+    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();</script><meta name="description" content="输入 breed 是小米路由器 mini 刷写第三方固件基本条件，手把手教你如何刷入不死 breed ，然后就可以激情的折腾第三方固件啦！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小米路由器mini刷写不死breed">
+<meta property="og:url" content="https://secrebase.cn/posts/b5f8128e/">
+<meta property="og:site_name" content="端言端语 🌠">
+<meta property="og:description" content="输入 breed 是小米路由器 mini 刷写第三方固件基本条件，手把手教你如何刷入不死 breed ，然后就可以激情的折腾第三方固件啦！">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/duan1104/img/raw/master/img/mini-breed-cover.png">
+<meta property="og:image" content="https://gitee.com/duan1104/img/raw/master/img/mini-develope.png">
+<meta property="og:image" content="https://gitee.com/duan1104/img/raw/master/img/mini-mode.png">
+<meta property="og:image" content="https://gitee.com/duan1104/img/raw/master/img/ssh-tool.png">
+<meta property="og:image" content="https://gitee.com/duan1104/img/raw/master/img/mini-breed.png">
+<meta property="og:image" content="https://gitee.com/duan1104/img/raw/master/img/mini-cmd-demo.png">
+<meta property="og:image" content="https://gitee.com/duan1104/img/raw/master/img/mini-WinSCP.png">
+<meta property="og:image" content="https://gitee.com/duan1104/img/raw/master/img/upload-breed.png">
+<meta property="og:image" content="https://gitee.com/duan1104/img/raw/master/img/mini-write-breed.png">
+<meta property="article:published_time" content="2020-09-16T14:44:48.000Z">
+<meta property="article:modified_time" content="2021-02-25T07:22:01.000Z">
+<meta property="article:author" content="Duan">
+<meta property="article:tag" content="小米路由器mini">
+<meta property="article:tag" content="breed">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/duan1104/img/raw/master/img/mini-breed-cover.png"><script src="/js/ui/mode.js"></script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="Duan"><img width="96" loading="lazy" src="/avatar.jpg" alt="Duan"><span class="site-author-status" title="永远相信美好的事情即将发生">😊</span></a><div class="site-author-name"><a href="/about/">Duan</a></div><a class="site-name" href="/about/site.html">端言端语 🌠</a><sub class="site-subtitle"></sub><div class="site-desciption"></div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">3</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">2</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">7</span></a></div><a class="site-state-item hty-icon-button" href="/message/" title="留言板"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-chat-3-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="/atom.xml" title="RSS" target="_blank" style="color:orange"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-rss-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/duan-1" title="GitHub" target="_blank" style="color:#6e5494"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://weibo.com/duanduana1104" title="微博" target="_blank" style="color:#E6162D"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-weibo-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/duan2333-52" title="知乎" target="_blank" style="color:#0084FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-zhihu-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/4615465" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-bilibili-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:duan1104@foxmail.com" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-genderless-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%88%B7%E5%85%A5%E5%BC%80%E5%8F%91%E7%89%88%E5%9B%BA%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">一、刷入开发版固件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%BC%80%E5%90%AF-SSH-%E5%8A%9F%E8%83%BD"><span class="toc-number">2.</span> <span class="toc-text">二、开启 SSH 功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%88%B7%E5%85%A5-breed"><span class="toc-number">3.</span> <span class="toc-text">三、刷入 breed</span></a></li></ol></div></div></div><div class="tag-cloud"><div class="tag-cloud-tags"><a href="/tags/DDns/" style="font-size: 12px; color: #999">DDns</a> <a href="/tags/Flag/" style="font-size: 12px; color: #999">Flag</a> <a href="/tags/Openwrt/" style="font-size: 12px; color: #999">Openwrt</a> <a href="/tags/breed/" style="font-size: 12px; color: #999">breed</a> <a href="/tags/%E5%B0%8F%E7%B1%B3%E8%B7%AF%E7%94%B1%E5%99%A8mini/" style="font-size: 12px; color: #999">小米路由器mini</a> <a href="/tags/%E8%B7%AF%E7%94%B1%E5%99%A8/" style="font-size: 12px; color: #999">路由器</a> <a href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91/" style="font-size: 12px; color: #999">阿里云</a></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://secrebase.cn/posts/b5f8128e/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="Duan"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="端言端语 🌠"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">小米路由器mini刷写不死breed</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <span class="post-meta-icon-text">发表于</span> <time title="创建时间：2020-09-16 22:44:48" itemprop="dateCreated datePublished" datetime="2020-09-16T22:44:48+08:00">2020-09-16</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <span class="post-meta-icon-text">更新于</span> <time title="修改时间：2021-02-25 15:22:01" itemprop="dateModified" datetime="2021-02-25T15:22:01+08:00">2021-02-25</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">753</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">2m</span></span></span><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category" href="/categories/%E7%9E%8E%E6%8A%98%E8%85%BE/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">瞎折腾</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag" href="/tags/%E5%B0%8F%E7%B1%B3%E8%B7%AF%E7%94%B1%E5%99%A8mini/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">小米路由器mini</span></a><a class="tag" href="/tags/breed/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">breed</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#0078E7;"><img src="https://gitee.com/duan1104/img/raw/master/img/mini-breed-cover.png" style="zoom:80%;" / loading="lazy">
+
+<a id="more"></a>
+
+<div class="primary">
+
+<blockquote>
+<p>家里正好闲置了小米路由器mini，带到学校后研究了一下，发现可以刷第三方固件焕发它的第二春，正好记录一下折腾的过程。</p>
+</blockquote>
+</div>
+
+<h2 id="一、刷入开发版固件"><a href="#一、刷入开发版固件" class="headerlink" title="一、刷入开发版固件"></a>一、刷入开发版固件</h2><blockquote>
+<p>小米路由器 mini 、U 盘、小米 WiFi（手机 app ）、ssh 工具（ putty 、Xshell 或者系统自带的 cmd 也可以）、WinSCP 。</p>
+<p>PS：可以事先将软件下载好。</p>
+</blockquote>
+<p>&emsp;&emsp;先去到官网下载开发版 ROM ：<a target="_blank" rel="noopener" href="http://miwifi.com/miwifi_download.html">http://miwifi.com/miwifi_download.html</a> ;</p>
+<p><img src="https://gitee.com/duan1104/img/raw/master/img/mini-develope.png" loading="lazy"></p>
+<p>然后将下载的文件重命名为 <code>miwifi.bin</code> ，先将 U盘格式化为 FAT / FAT32 格式，然后将 <code>miwifi.bin</code> 放在 U盘根目录下面。</p>
+<ol>
+<li><p>断开路由器的电源，将 U盘插入 USB 接口</p>
+</li>
+<li><p>用牙签按住 reset 按钮不松开的同时插上电源，指示灯变为红色闪烁状态即可松开 reset 键</p>
+</li>
+<li><p>等待大约 3 - 6 分钟，待刷机完成后路由器会自动重启，指示灯恢复为蓝色刷机完成</p>
+</li>
+</ol>
+<p><img src="https://gitee.com/duan1104/img/raw/master/img/mini-mode.png" loading="lazy"></p>
+<h2 id="二、开启-SSH-功能"><a href="#二、开启-SSH-功能" class="headerlink" title="二、开启 SSH 功能"></a>二、开启 SSH 功能</h2><p>&emsp;&emsp;先将刚刚刷好的路由器简单设置好，然后连接WiFi后打开<strong>小米WiFi</strong>（手机 app ）路由器绑定至自己的小米账号下面，否则是无法开启 SSH 功能的。进入到官网下载 SSH 工具，找到刚刚绑定的路由器并下载工具包，会得到一个 <code>miwifi_ssh.bin</code> 的文件。然后将该文件放在根目录下，同时U盘根目录有且仅有一个后缀为 <code>bin</code> 的文件。然后按照刷机的操作再进行一次，等待 1 - 2 分钟刷机完成。</p>
+<p><img src="https://gitee.com/duan1104/img/raw/master/img/ssh-tool.png" loading="lazy"></p>
+<h2 id="三、刷入-breed"><a href="#三、刷入-breed" class="headerlink" title="三、刷入 breed"></a>三、刷入 breed</h2><p>&emsp;&emsp;先下载 breed ：<a target="_blank" rel="noopener" href="https://breed.hackpascal.net/">https://breed.hackpascal.net/</a> ，这是由恩山大神写的，breed 又叫不死 uboot ，刷完就可以任意刷机了，不用担心路由器变砖。找到 <code>breed-mt7620-xiaomi-mini.bin</code> ，就是小米路由器 mini 的 breed 。</p>
+<p><img src="https://gitee.com/duan1104/img/raw/master/img/mini-breed.png" loading="lazy"></p>
+<p>&emsp;&emsp;此时用电脑使用 SSH 工具连接路由器，我以 cmd 为例，按 win + R 键后输入 cmd 后回车，就会弹出一个命令窗口；输入 <code>ssh root@192.168.31.1</code> ，有提示就填 <code>yes</code> 然后回车，就会要你输入刚刚 SSH 网页那里的 root 密码，输入密码是不显示，不用担心是自己没有输入成功，直接回车就会连接上路由器。</p>
+<p><img src="https://gitee.com/duan1104/img/raw/master/img/mini-cmd-demo.png" loading="lazy"></p>
+<p>&emsp;&emsp;再打开 WinSCP ，文件协议选择 <code>SCP</code>  主机名填入 <code>192.168.31.1</code> ，用户名为  <code>root</code> ，密码为刚刚的 SSH 密码。</p>
+<p><img src="https://gitee.com/duan1104/img/raw/master/img/mini-WinSCP.png" loading="lazy"></p>
+<p>&emsp;&emsp;登录进去后，将之前下载的 breed 文件，上传到根目录的 <code>tmp</code> 目录下面。</p>
+<p><img src="https://gitee.com/duan1104/img/raw/master/img/upload-breed.png" loading="lazy"></p>
+<p>&emsp;&emsp;返回 <code>cmd</code> 窗口，输入下面的命令：</p>
+<pre class="language-none"><code class="language-none">cd &#x2F;tmp&#x2F;
+mtd -r write breed-mt7620-xiaomi-mini.bin Bootloader</code></pre>
+<p><img src="https://gitee.com/duan1104/img/raw/master/img/mini-write-breed.png" loading="lazy"></p>
+<p>&emsp;&emsp;等路由器重启之后，路由器就会进入 breed 恢复控制台，就可以随心随意的刷第三方固件啦~！如果想继续进入小米官方固件，就在 <code>固件启动设置</code> 的 <code>固件类型</code> 选择 <code>小米Mini</code> ，然后保存之后就可以进入小米的官方固件了。</p>
+</div><div id="reward-container"><span class="hty-icon-button button-glow" id="reward-button" title="打赏" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === &quot;none&quot;) ? &quot;block&quot; : &quot;none&quot;;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hand-coin-line"></use></svg></span><div id="reward-comment">打赏不要超过早餐费哦~</div><div id="qr" style="display:none;"><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://secretbase.oss-cn-beijing.aliyuncs.com/img/alipay-qrcode.JPG"><img loading="lazy" src="https://secretbase.oss-cn-beijing.aliyuncs.com/img/alipay-qrcode.JPG" alt="支付宝" title="支付宝"></a><div><span style="color:#00A3EE"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-alipay-line"></use></svg></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://secretbase.oss-cn-beijing.aliyuncs.com/img/qqpay-qrcode.JPG"><img loading="lazy" src="https://secretbase.oss-cn-beijing.aliyuncs.com/img/qqpay-qrcode.JPG" alt="QQ 支付" title="QQ 支付"></a><div><span style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://secretbase.oss-cn-beijing.aliyuncs.com/img/wechatpay-qrcode.JPG"><img loading="lazy" src="https://secretbase.oss-cn-beijing.aliyuncs.com/img/wechatpay-qrcode.JPG" alt="微信支付" title="微信支付"></a><div><span style="color:#2DC100"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-wechat-pay-line"></use></svg></span></div></div></div></div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>Duan</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://secrebase.cn/posts/b5f8128e/" title="小米路由器mini刷写不死breed">https://secrebase.cn/posts/b5f8128e/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/posts/1c291ca3/" rel="prev" title="Hello World!"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">Hello World!</span></a></div><div class="post-nav-item"></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>想说点什么？说！</span><br></div><div id="tcomment"></div><script src="https://cdn.jsdelivr.net/npm/twikoo@latest/dist/twikoo.all.min.js"></script><script>const twikooConfig = {"enable":true,"envId":"blog-comment-8gw3lq95c5b87676"}
+twikooConfig.el = '#tcomment'
+twikoo.init(twikooConfig)</script></div></main><footer class="sidebar-translate" id="footer"><div class="beian"><a rel="noopener" href="https://beian.miit.gov.cn/" target="_blank">湘ICP备19007792号-2</a></div><div class="copyright"><span>&copy; 2021 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> Duan</span></div><div class="live_time"><span>本博客已悄咪咪存在</span><span id="display_live_time"></span><span class="moe-text">啦！(●'◡'●)</span><script>function blog_live_time() {
+  setTimeout(blog_live_time, 1000);
+  const start = new Date('2021-02-12T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = " " + passDay + " 天 " + passHour + " 小时 " + passMinute + " 分 " + passSecond + " 秒";
+}
+blog_live_time();
+</script></div></footer><a class="hty-icon-button" id="goUp" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-search-line"></use></svg></span></a><script>window.addEventListener("DOMContentLoaded", () => {
+  // Handle and trigger popup window
+  document.querySelector(".popup-trigger").addEventListener("click", () => {
+    document.querySelector(".popup").classList.add("show");
+    setTimeout(() => {
+      document.querySelector(".search-input").focus();
+    }, 100);
+  });
+
+  // Monitor main search box
+  const onPopupClose = () => {
+    document.querySelector(".popup").classList.remove("show");
+  };
+
+  document.querySelector(".popup-btn-close").addEventListener("click", () => {
+    onPopupClose();
+  });
+
+  window.addEventListener("keyup", event => {
+    if (event.key === "Escape") {
+      onPopupClose();
+    }
+  });
+});
+</script><script defer src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script><script defer src="https://cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script><script defer src="/js/search/algolia-search.js"></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-close-line"></use></svg></span></div><div class="search-input-container"></div><div class="algolia-results"><div id="algolia-stats"></div><div id="algolia-hits"></div><div class="algolia-pagination" id="algolia-pagination"></div></div></div><script>const date = new Date();
+const today = (date.getMonth() + 1) + "-" + date.getDate()
+const mourn_days = ["4-4","9-18","5-19","5-20","5-21"]
+if (mourn_days.includes(today)) {
+  document.documentElement.style.filter = "grayscale(1)";
+}</script></div></body></html>
