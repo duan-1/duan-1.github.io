@@ -6,7 +6,7 @@
   <link href="https://secrebase.cn/atom.xml" rel="self"/>
   
   <link href="https://secrebase.cn/"/>
-  <updated>2021-03-15T14:34:32.000Z</updated>
+  <updated>2021-03-24T13:51:38.329Z</updated>
   <id>https://secrebase.cn/</id>
   
   <author>
@@ -20,13 +20,13 @@
     <title>关于校园网检测网络共享原理的浅析</title>
     <link href="https://secrebase.cn/posts/6dd1031a/"/>
     <id>https://secrebase.cn/posts/6dd1031a/</id>
-    <published>2021-03-15T14:34:32.000Z</published>
-    <updated>2021-03-15T14:34:32.000Z</updated>
+    <published>2021-03-15T14:34:32.152Z</published>
+    <updated>2021-03-24T13:51:38.329Z</updated>
     
-    <content type="html"><![CDATA[<div class=“info”><blockquote><p>此文章只是用于简单分析校园网检测网络共享，并非专业教程，建议大家以图一乐的心态看待🌚</p></blockquote></div><h2 id="关于校园网"><a href="#关于校园网" class="headerlink" title="关于校园网"></a>关于校园网</h2><p>我们学校的校园网可以说是电信一家独大，但是最近许多同学开始办理联通的校园网。经过使用发现，虽说是两家运营商，但是都是用的学校机房作为统一出口，只是换个帐号认证而已，还是一样20m 的速度，一样版本号为 4.96的锐捷客户端。<a id="more"></a>学校明明可以让学生使用上 100m 的宽带，却就是限制在20m <del>来源于某学期初期网管未开启限速的真实体验</del>。并且锐捷客户端还会检测电脑是否存在多网卡同时￼使用的情况，存在的话还会自动把认证断开（这就让平时还需要使用虚拟机的同学十分难受）</p><h2 id="绕开客户端在寝室使用路由器的小技巧"><a href="#绕开客户端在寝室使用路由器的小技巧" class="headerlink" title="绕开客户端在寝室使用路由器的小技巧"></a>绕开客户端在寝室使用路由器的小技巧</h2><p>这果就不得不提到 <a href="https://baike.baidu.com/item/mentohust/11049624?fr=aladdin">mentohust</a> ，这是由华科的一名同学写的用于代替锐捷认证的程序。因为它可以运行在 Linux 环境下，即可以用于<a href="https://baike.baidu.com/item/openWRT/3528947?fr=aladdin">OpenWrt</a> （一个嵌入式的 Linux 发行版）一个嵌入式的 Linux 发行版。具体如何使用 OpenWrt ，大家可以自行百度，不过不是市面上所有的路由器都可以刷入OpenWrt 。</p><h2 id="校园网共享检测"><a href="#校园网共享检测" class="headerlink" title="校园网共享检测"></a>校园网共享检测</h2><p>在我使用路由器的时候，发现如果连接的设备太多的话，还是一样会被检测到共享网络。在一开始的时候，我认为校园网是通过 IP 地址和 MAC 地址分析是否在共享网络；我就又加了一个路由器再加一层 NAT 转换，隐藏掉那些信息。事实证明是我过于天真了，当连接多个设备还是会被检测出来。</p><p>经过思考与实验发现，共享检测是根据 User-Agent 来判定否存在一个网络下有多台设备。</p><div class=“sucesss”><blockquote><p>什么是 User-Agent<br>User Agent中文名为用户代理，简称 UA，它是一个特殊字符串头，使得服务器能够识别客户使用的操作系统及版本、CPU 类型、浏览器及版本、浏览器渲染引擎、浏览器语言、浏览器插件等。</p></blockquote></div><p>由此可得出，只要我们的数据直接经过校园网传输，那么就可以被分析到设备的情况。那么只要我们借助一台校园网外的服务器作用代理服务器，运用 socks5 代理就可以使我们进行网络共享而不会被校园网检测到。</p><h3 id="关于-socks5-代理"><a href="#关于-socks5-代理" class="headerlink" title="关于 socks5 代理"></a>关于 socks5 代理</h3><p>SOCKS5 代理，是采用 SOCKS 协议的代理服务器，是一种通用的代理服务器，默认端口是 1080 。SOCKS5 代理工作在会话层，不要求应用程序遵循特定的操作系统平台，SOCKS5 代理只是简单地传递数据包，而不必关心是何种应用协议(比如 FTP 、HTTP 和 NNTP 请求)。<br>用人话来就是：正常情况下，我们的数据都需要经过校园网，校园网则会分析到我们的 UA ；而我们设置代理后，数据就直接传输到我们的代理服务器上，自然而然，共享检测对我们就不存在了。</p><h3 id="我如何设置代理服务器"><a href="#我如何设置代理服务器" class="headerlink" title="我如何设置代理服务器"></a>我如何设置代理服务器</h3><p>因为我向我家那边的电信申请了带公网 IP 的宽带，我就在家里设置了一个代理服务器，并将 IP 映射到了我自己的域名，详情可以看我的另一篇章——<a href="https://secretbase.cn/posts/c5454e94/">远程访问Openwrt路由器</a></p><blockquote><p>希望能够给大家一个新的思路，至于详细的教程可能会有，可能也不会有<del>（老鸽子了）</del></p></blockquote>]]></content>
+    <content type="html"><![CDATA[<div class="info"><blockquote><p>此文章只是用于简单分析校园网检测网络共享，并非专业教程，建议大家以图一乐的心态看待🌚</p></blockquote></div><h2 id="关于校园网"><a href="#关于校园网" class="headerlink" title="关于校园网"></a>关于校园网</h2><p>我们学校的校园网可以说是电信一家独大，但是最近许多同学开始办理联通的校园网。经过使用发现，虽说是两家运营商，但是都是用的学校机房作为统一出口，只是换个帐号认证而已，还是一样20m 的速度，一样版本号为 4.96的锐捷客户端。<a id="more"></a>学校明明可以让学生使用上 100m 的宽带，却就是限制在20m <del>来源于某学期初期网管未开启限速的真实体验</del>。并且锐捷客户端还会检测电脑是否存在多网卡同时￼使用的情况，存在的话还会自动把认证断开（这就让平时还需要使用虚拟机的同学十分难受）</p><h2 id="绕开客户端在寝室使用路由器的小技巧"><a href="#绕开客户端在寝室使用路由器的小技巧" class="headerlink" title="绕开客户端在寝室使用路由器的小技巧"></a>绕开客户端在寝室使用路由器的小技巧</h2><p>这果就不得不提到 <a href="https://baike.baidu.com/item/mentohust/11049624?fr=aladdin">mentohust</a> ，这是由华科的一名同学写的用于代替锐捷认证的程序。因为它可以运行在 Linux 环境下，即可以用于<a href="https://baike.baidu.com/item/openWRT/3528947?fr=aladdin">OpenWrt</a> （一个嵌入式的 Linux 发行版）一个嵌入式的 Linux 发行版。具体如何使用 OpenWrt ，大家可以自行百度，不过不是市面上所有的路由器都可以刷入OpenWrt 。</p><h2 id="校园网共享检测"><a href="#校园网共享检测" class="headerlink" title="校园网共享检测"></a>校园网共享检测</h2><p>在我使用路由器的时候，发现如果连接的设备太多的话，还是一样会被检测到共享网络。在一开始的时候，我认为校园网是通过 IP 地址和 MAC 地址分析是否在共享网络；我就又加了一个路由器再加一层 NAT 转换，隐藏掉那些信息。事实证明是我过于天真了，当连接多个设备还是会被检测出来。</p><p>经过思考与实验发现，共享检测是根据 User-Agent 来判定否存在一个网络下有多台设备。</p><div class="success"><blockquote><p>什么是 User-Agent<br>User Agent中文名为用户代理，简称 UA，它是一个特殊字符串头，使得服务器能够识别客户使用的操作系统及版本、CPU 类型、浏览器及版本、浏览器渲染引擎、浏览器语言、浏览器插件等。</p></blockquote></div><p>由此可得出，只要我们的数据直接经过校园网传输，那么就可以被分析到设备的情况。那么只要我们借助一台校园网外的服务器作用代理服务器，运用 socks5 代理就可以使我们进行网络共享而不会被校园网检测到。</p><h3 id="关于-socks5-代理"><a href="#关于-socks5-代理" class="headerlink" title="关于 socks5 代理"></a>关于 socks5 代理</h3><p>SOCKS5 代理，是采用 SOCKS 协议的代理服务器，是一种通用的代理服务器，默认端口是 1080 。SOCKS5 代理工作在会话层，不要求应用程序遵循特定的操作系统平台，SOCKS5 代理只是简单地传递数据包，而不必关心是何种应用协议(比如 FTP 、HTTP 和 NNTP 请求)。<br>用人话来就是：正常情况下，我们的数据都需要经过校园网，校园网则会分析到我们的 UA ；而我们设置代理后，数据就直接传输到我们的代理服务器上，自然而然，共享检测对我们就不存在了。</p><h3 id="我如何设置代理服务器"><a href="#我如何设置代理服务器" class="headerlink" title="我如何设置代理服务器"></a>我如何设置代理服务器</h3><p>因为我向我家那边的电信申请了带公网 IP 的宽带，我就在家里设置了一个代理服务器，并将 IP 映射到了我自己的域名，详情可以看我的另一篇章——<a href="https://secretbase.cn/posts/c5454e94/">远程访问Openwrt路由器</a></p><blockquote><p>希望能够给大家一个新的思路，至于详细的教程可能会有，可能也不会有<del>（老鸽子了）</del></p></blockquote>]]></content>
     
     
-    <summary type="html">&lt;div class=“info”&gt;
+    <summary type="html">&lt;div class=&quot;info&quot;&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;此文章只是用于简单分析校园网检测网络共享，并非专业教程，建议大家以图一乐的心态看待🌚&lt;/p&gt;
