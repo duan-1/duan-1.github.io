@@ -6,7 +6,7 @@
   <link href="http://blog.secretbase.cn/atom.xml" rel="self"/>
   
   <link href="http://blog.secretbase.cn/"/>
-  <updated>2022-04-05T11:37:07.729Z</updated>
+  <updated>2022-04-12T13:20:51.286Z</updated>
   <id>http://blog.secretbase.cn/</id>
   
   <author>
@@ -17,18 +17,18 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://blog.secretbase.cn/2022/04/05/hello-world/"/>
-    <id>http://blog.secretbase.cn/2022/04/05/hello-world/</id>
-    <published>2022-04-05T11:37:07.729Z</published>
-    <updated>2022-04-05T11:37:07.729Z</updated>
+    <title>“第一篇”博文</title>
+    <link href="http://blog.secretbase.cn/2022/04/12/about-my-blog/"/>
+    <id>http://blog.secretbase.cn/2022/04/12/about-my-blog/</id>
+    <published>2022-04-12T17:23:33.000Z</published>
+    <updated>2022-04-12T13:20:51.286Z</updated>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    <content type="html"><![CDATA[<p>在最开始搭建博客的时候，我用的是 Wordpress，后面因为服务器配置太低，使用体验非常的差。后面转向了 Typecho，比 Wordpress 轻量化一些的博客框架，当时因为自己并不会 php，有没有自定义程度够高的主题，使我放弃了 Typecho。入坑了 Hexo，虽然 Hexo 使用了一段时间，但是由于每次渲染的时间太久了（当时年轻，想要分秒必争😶），又改为了 Hugo。最后的最后，现在还是回到了 Hexo。</p><h2 id="回到-Hexo-的原因"><a href="#回到-Hexo-的原因" class="headerlink" title="回到 Hexo 的原因"></a>回到 Hexo 的原因</h2><p>主观体验上，Hexo 的命令对于我来说更为顺手。还有就是自己想要打算写一个属于自己主题，想以 Hexo 为起点。如果你要问我为什么是以 Hexo 为起点，我只能说我也不知道，单纯就是想这么做而这么做👅</p><h2 id="reborn"><a href="#reborn" class="headerlink" title="reborn"></a>reborn</h2><p>正值毕业之际重构我的博客，感觉自己一无是处，表面上看起来有很多技能，实际上确实都只知道一些皮毛。想要自救一下，就决定舍弃了我之前写了一点点<sup>n</sup>文章，构建一个新的博客。专注于知识的沉淀，想着前端这个方向进一步发展一下自己，毕竟只会 HTML5 和 CSS，加上一点点 JS，都不太好意思说自己是搞前端的。</p><p>以及也是近期购置了一台 miniPC，物理安装了 Linux 系统，想要把开发环境搬离 Windows，全面转向 Linux。在结果一周的使用后，Linux 作为开发环境来使用，不知道为什么，就是用着比 Windows 舒服。如果你想要驳斥我的观点，我将完全赞同你。</p><p>最后，非常感谢你看到这里。我觉得在写这篇文章时，并没有完全想好自己想要写什么，想到啥就写啥，可以说是毫无逻辑可言、无病呻吟。所以非常感谢你在这种情况下看到了这里。</p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for</summary>
+    <summary type="html">&lt;p&gt;在最开始搭建博客的时候，我用的是 Wordpress，后面因为服务器配置太低，使用体验非常的差。后面转向了 Typecho，比 Wordpress 轻量化一些的博客框架，当时因为自己并不会 php，有没有自定义程度够高的主题，使我放弃了 Typecho。入坑了 Hexo，虽</summary>
       
     
     
