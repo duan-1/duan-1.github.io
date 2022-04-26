@@ -11,7 +11,7 @@
   
   <title>
     
-      “第一篇”博文 
+      记 OnePlus 7Pro 刷入 LineageOS 18.1 的奇妙之旅 
       
       
       |
@@ -138,40 +138,167 @@ MathJax = {
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">“第一篇”博文</div>
+      <div class="post-title">记 OnePlus 7Pro 刷入 LineageOS 18.1 的奇妙之旅</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime" title="Update time"></i>
-          2022-04-12 17:23:33
+          2022-04-26 22:12:37
         </span>
         
+              <span class="post-categories">
+                <i class="iconfont icon-bookmark" title="Categories"></i>
+                
+                <span class="span--category">
+                  <a href="/categories/%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0/" title="折腾笔记">
+                    <b>#</b> 折腾笔记
+                  </a>
+                </span>
+                
+              </span>
+          
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="Tags"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/%E4%B8%80%E5%8A%A0-7Proo/" title="一加 7Proo">
+                    <b>#</b> 一加 7Proo
+                  </a>
+                </span>
+                
+                <span class="span--tag">
+                  <a href="/tags/LineageOS/" title="LineageOS">
+                    <b>#</b> LineageOS
+                  </a>
+                </span>
+                
+                <span class="span--tag">
+                  <a href="/tags/%E5%88%B7%E6%9C%BA/" title="刷机">
+                    <b>#</b> 刷机
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
       <div class="markdown-body">
-        <p>在最开始搭建博客的时候，我用的是 Wordpress，后面因为服务器配置太低，使用体验非常的差。后面转向了 Typecho，比 Wordpress 轻量化一些的博客框架，当时因为自己并不会 php，有没有自定义程度够高的主题，使我放弃了 Typecho。入坑了 Hexo，虽然 Hexo 使用了一段时间，但是由于每次渲染的时间太久了（当时年轻，想要分秒必争😶），又改为了 Hugo。最后的最后，现在还是回到了 Hexo。</p>
-<h2 id="回到-Hexo-的原因"><a href="#回到-Hexo-的原因" class="headerlink" title="回到 Hexo 的原因"></a>回到 Hexo 的原因</h2><p>主观体验上，Hexo 的命令对于我来说更为顺手。还有就是自己想要打算写一个属于自己主题，想以 Hexo 为起点。如果你要问我为什么是以 Hexo 为起点，我只能说我也不知道，单纯就是想这么做而这么做👅</p>
-<h2 id="reborn"><a href="#reborn" class="headerlink" title="reborn"></a>reborn</h2><p>正值毕业之际重构我的博客，感觉自己一无是处，表面上看起来有很多技能，实际上确实都只知道一些皮毛。想要自救一下，就决定舍弃了我之前写了一点点<sup>n</sup>文章，构建一个新的博客。专注于知识的沉淀，想着前端这个方向进一步发展一下自己，毕竟只会 HTML5 和 CSS，加上一点点 JS，都不太好意思说自己是搞前端的。</p>
-<p>以及也是近期购置了一台 miniPC，物理安装了 Linux 系统，想要把开发环境搬离 Windows，全面转向 Linux。在结果一周的使用后，Linux 作为开发环境来使用，不知道为什么，就是用着比 Windows 舒服。如果你想要驳斥我的观点，我将完全赞同你。</p>
-<p>最后，非常感谢你看到这里。我觉得在写这篇文章时，并没有完全想好自己想要写什么，想到啥就写啥，可以说是毫无逻辑可言、无病呻吟。所以非常感谢你在这种情况下看到了这里。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>参照此教程刷机时建议先阅读一遍全文</p>
+</blockquote>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>先到 <a target="_blank" rel="noopener" href="https://download.lineageos.org/guacamole">Lineage Recovery</a> 下载好自己机型对应的刷机包和恢复镜像（引导程序）。</p>
+<p>安装 <code>adb</code> 和 <code>fastboot</code> (以 Windows 11 为例)</p>
+<ol>
+<li>下载来自谷歌官方的<a target="_blank" rel="noopener" href="https://dl.google.com/android/repository/platform-tools-latest-windows.zip">安装包</a></li>
+<li>在任意的地方新建名为 adb-fastboot 的文件夹，例如：<code>D:\Program Files\adb-fastboot</code></li>
+<li>配置环境变量：<ul>
+<li>进入系统设置</li>
+<li>进入 “系统” - “关于”，找到 “高级系统设置” 。</li>
+<li>点击 “环境变量” ，在下面的系统变量中找到 <code>Path</code> 变量</li>
+<li>编辑 <code>Path</code> 变量，插入安装路径，例如：<code>D:\Program Files\adb-fastboot\platform-tools</code></li>
+</ul>
+</li>
+<li>安装 <a target="_blank" rel="noopener" href="https://github.com/koush/UniversalAdbDriver">universal adb driver</a>，然后重启电脑</li>
+</ol>
+<p>打开 <code>adb</code> </p>
+<ol>
+<li>进入你手机的设置界面，滑到最底下找到并点击 “关于手机”</li>
+<li>找到 “版本号” ，连续点击七次，就会看到有提示告诉你已经成功进入开发者模式。</li>
+<li>然后返回到设置，找到 “系统” 选项，下滑你就可以看到 “开发者选项”，点击进入。</li>
+<li>找到 “USB 调试” ，将其打开。</li>
+<li>将手机连接电脑，右键点击 “开始菜单” ，打开 “Windows 终端”，输入命令 <code>adb devices</code> 。 ^fd1fce</li>
+<li>手机就会弹出一个对话框，勾选 “不在询问” ，然后点击 OK。</li>
+</ol>
+<p>这样我们就完成了我们的准备工作。</p>
+<h2 id="解锁-bootloader"><a href="#解锁-bootloader" class="headerlink" title="解锁 bootloader"></a>解锁 bootloader</h2><ol>
+<li>在手机的 “开发者选项” 中，启用 “OEM 解锁” </li>
+<li>将手机链接到电脑，然后打开命令行工具，然后输入以下命令重启到 fastboot 模式：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入 fastboot 模式</span></span><br><span class="line"><span class="comment"># 你同样可以在关机状态下，同时按住音量 + 键、音量 - 键和电源键。</span></span><br><span class="line">adb reboot bootloader</span><br></pre></td></tr></table></figure></li>
+<li>输入以下命令检查设备链接是否正常：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fastboot devices</span><br><span class="line"><span class="comment"># 输出了以下信息就说明连接成功了</span></span><br><span class="line"><span class="comment"># xxxx        fastboot</span></span><br></pre></td></tr></table></figure></li>
+<li>输入以下命令解锁 bootloader：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fastboot oem unlock</span><br><span class="line"><span class="comment"># 输入这个命令后就会出现提示</span></span><br><span class="line"><span class="comment"># 按音量 - 键 选择 unlock 的选项，电源键确认。</span></span><br></pre></td></tr></table></figure></li>
+<li>手机将会重新启动，等待重启完成后，重复一遍开启 USB 调试的流程。</li>
+</ol>
+<h2 id="使用-fastboot-输入引导程序"><a href="#使用-fastboot-输入引导程序" class="headerlink" title="使用 fastboot 输入引导程序"></a>使用 <code>fastboot</code> 输入引导程序</h2><ol>
+<li>将手机进入到 fastboot 模式。</li>
+<li>进入之前下载的刷机包所在路径</li>
+<li>刷入引导程序：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastboot flash boot xxx.img    <span class="comment"># 这里的 xxx 注意替换为你的文件的名字</span></span><br></pre></td></tr></table></figure></li>
+<li>然后用音量 - 键选择 recovery mode，然后就会进入到一个紫色恢复界面。</li>
+</ol>
+<h2 id="在安装之前（非必做）"><a href="#在安装之前（非必做）" class="headerlink" title="在安装之前（非必做）"></a>在安装之前（非必做）</h2><p>因为由于一些原因可能会导致手机刷入刷机包后会变砖，官方还提供了此方法预防变砖。</p>
+<ol>
+<li>下载文件 <a target="_blank" rel="noopener" href="https://www.androidfilehost.com/?fid=2188818919693768129">copy-partitions-20210323_1922.zip</a></li>
+<li>使用 <code>sideload</code> 命令刷入刚刚下载的文件：<ul>
+<li>在手机的恢复模式选择 “Apply update” - “Apply from ADB”。</li>
+<li>然后在电脑上输入命令刷入压缩文件：<code>adb sideload copy-partitions-20210323_1922.zip</code></li>
+</ul>
+</li>
+<li>手机就会出现提示信息，选择 yes 的选项，他就会将将原来的东西都备份一遍，以便变砖后方便救援</li>
+<li>然后点击左上角的箭头返回到主菜单，选择 “Advanced” - “Reboot to recovery”，就会重启一遍。</li>
+</ol>
+<h2 id="开始刷机"><a href="#开始刷机" class="headerlink" title="开始刷机"></a>开始刷机</h2><ol>
+<li>进入恢复模式，找到 “Factory reset” - “Format data&#x2F;factory reset”，执行双清。</li>
+<li>返回到主菜单，进入 “Apply update” - “Apply from ADB” ，然后执行刷机命令刷入我们之前下载的刷机包：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb sideload xxx.zip    <span class="comment"># xxx 为你刷机包的名字</span></span><br></pre></td></tr></table></figure></li>
+<li>如果安装成功，进度条会停在百分之 47%，并且提示 <code>adb: failed to read command: No error</code>。</li>
+<li>然后回到主菜单，选择 “Reboot system now”。</li>
+</ol>
+<p>然后等待重启就可以看到 LineageOS 啦！</p>
+<h2 id="LineageOS-添加-Google-Apps"><a href="#LineageOS-添加-Google-Apps" class="headerlink" title="LineageOS 添加 Google Apps"></a>LineageOS 添加 Google Apps</h2><p>因为一些原因，LineageOS 没有预装 Google 全家桶，但是他们提供了对应版本的文件，供我们自行安装。</p>
+<ol>
+<li>进入网页 <a target="_blank" rel="noopener" href="https://wiki.lineageos.org/gapps.html">Google Apps</a> 下载对应版本的文件。</li>
+<li>效仿刷机的步骤，将手机重启至恢复模式，先进行双清，避免因为某些程序不兼容导致系统崩溃，然后用 <code>sideload</code> 命令刷入 Google Apps 的文件。</li>
+<li>最后等待重启完成就搞定了。</li>
+</ol>
 
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
+              <a href="/2022/04/12/about-my-blog/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
           </div>
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime" title="Update time"></i>
-              2022-04-12 17:23:33
+              2022-04-26 22:12:37
             </span>
             
+                  <span class="post-categories">
+                    <i class="iconfont icon-bookmark" title="Categories"></i>
+                    
+                    <span class="span--category">
+                      <a href="/categories/%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0/" title="折腾笔记">
+                        <b>#</b> 折腾笔记
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="Tags"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/%E4%B8%80%E5%8A%A0-7Proo/" title="一加 7Proo">
+                        <b>#</b> 一加 7Proo
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/LineageOS/" title="LineageOS">
+                        <b>#</b> LineageOS
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/%E5%88%B7%E6%9C%BA/" title="刷机">
+                        <b>#</b> 刷机
+                      </a>
+                    </span>
+                    
+                  </span>
+              
           </div>
           <div class="post-foot-prev">
-            
-              <a href="/2022/04/26/oneplus-flash-lineageos/" target="_self">
-                <span>Next</span>
-                <i class="iconfont icon-chevronright"></i>
-              </a>
             
           </div>
         </div>
@@ -184,7 +311,7 @@ MathJax = {
   <div class="post-catalog hidden" id="catalog">
     <div class="title">Contents</div>
     <div class="catalog-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9E%E5%88%B0-Hexo-%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-text">回到 Hexo 的原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reborn"><span class="toc-text">reborn</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E9%94%81-bootloader"><span class="toc-text">解锁 bootloader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-fastboot-%E8%BE%93%E5%85%A5%E5%BC%95%E5%AF%BC%E7%A8%8B%E5%BA%8F"><span class="toc-text">使用 fastboot 输入引导程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E5%AE%89%E8%A3%85%E4%B9%8B%E5%89%8D%EF%BC%88%E9%9D%9E%E5%BF%85%E5%81%9A%EF%BC%89"><span class="toc-text">在安装之前（非必做）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E5%88%B7%E6%9C%BA"><span class="toc-text">开始刷机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LineageOS-%E6%B7%BB%E5%8A%A0-Google-Apps"><span class="toc-text">LineageOS 添加 Google Apps</span></a></li></ol>
     </div>
   </div>
 
@@ -487,12 +614,12 @@ MathJax = {
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E2%80%9C%E7%AC%AC%E4%B8%80%E7%AF%87%E2%80%9D%E5%8D%9A%E6%96%87 + '&url=' + http%3A%2F%2Fblog.secretbase.cn%2F2022%2F04%2F12%2Fabout-my-blog%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E8%AE%B0%20OnePlus%207Pro%20%E5%88%B7%E5%85%A5%20LineageOS%2018.1%20%E7%9A%84%E5%A5%87%E5%A6%99%E4%B9%8B%E6%97%85 + '&url=' + http%3A%2F%2Fblog.secretbase.cn%2F2022%2F04%2F26%2Foneplus-flash-lineageos%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://blog.secretbase.cn/2022/04/12/about-my-blog/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://blog.secretbase.cn/2022/04/26/oneplus-flash-lineageos/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         
