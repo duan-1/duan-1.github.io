@@ -11,8 +11,8 @@
   
   <title>
     
-      Tag 
-       : 刷机
+      修复“NetAdapter.sys”导致 Win11 的绿屏问题 
+      
       
       |
     
@@ -119,30 +119,205 @@
 
 
       <div class="flex-container">
-        <!-- 标签详情页，展示某个标签下的文章列表，url形式：https://yoursite/tags/某个标签/ -->
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
-<div class="container tag-details">
-  <div class="content-title">
-    <h2>
-      <span>刷机</span>
-    </h2>
-  </div>
+
+  <!-- LaTex Display -->
+
   
-    <div class="post-list">
-      <div class="post-item" title="记 OnePlus 7Pro 刷入 LineageOS 18.1 的奇妙之旅">
-        <span class="time-m-d">2022-04-26</span>
-        <a href="/2022/04/26/oneplus-flash-lineageos/">
-          <span>记 OnePlus 7Pro 刷入 LineageOS 18.1 的奇妙之旅</span>
-        </a>
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.10/dist/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">修复“NetAdapter.sys”导致 Win11 的绿屏问题</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="Update time"></i>
+          2022-07-09 21:38:18
+        </span>
+        
+              <span class="post-categories">
+                <i class="iconfont icon-bookmark" title="Categories"></i>
+                
+                <span class="span--category">
+                  <a href="/categories/%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0/" title="折腾笔记">
+                    <b>#</b> 折腾笔记
+                  </a>
+                </span>
+                
+              </span>
+          
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="Tags"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/Windows-11/" title="Windows 11">
+                    <b>#</b> Windows 11
+                  </a>
+                </span>
+                
+                <span class="span--tag">
+                  <a href="/tags/%E7%BB%BF%E5%B1%8F/" title="绿屏">
+                    <b>#</b> 绿屏
+                  </a>
+                </span>
+                
+                <span class="span--tag">
+                  <a href="/tags/NetAdapter-sys/" title="NetAdapter.sys">
+                    <b>#</b> NetAdapter.sys
+                  </a>
+                </span>
+                
+                <span class="span--tag">
+                  <a href="/tags/KMODE-EXCEPTION-NOT-HANDLED/" title="KMODE_EXCEPTION_NOT_HANDLED">
+                    <b>#</b> KMODE_EXCEPTION_NOT_HANDLED
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
+      <div class="markdown-body">
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>我的电脑用的是 Win11 的 Dev 版本，系统的更新就会比较频繁，由于以前从来没有因为更新而导致系统出现问题，让我备份的意识变得极为淡薄，一般都不会去想着在更新前备份一下。在更新到 25151 版本后，刚开始是偶尔会出现绿屏现象，也没有在意；直到前几天就出现开机不超过半个小时就会出现绿屏现象，严重影响了使用的体验。</p>
+<p>绿屏的提示为终止代码：KMODE_EXCEPTION_NOT_HANDLED，失败的操作：NetAdapter.sys。</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>经过多方的查阅发现是由于可以通过更新网卡的驱动解决。首先进入 Realtek 的官网下载驱动，<a target="_blank" rel="noopener" href="https://www.realtek.com/en/component/zoo/category/network-interface-controllers-10-100-1000m-gigabit-ethernet-pci-express-software">https://www.realtek.com/en/component/zoo/category/network-interface-controllers-10-100-1000m-gigabit-ethernet-pci-express-software</a>。</p>
+<p>在网页中不要选择 **Win11 Auto Installation Program (NetAdapterCx)**，而是应该选择 <strong>Win10 Auto Installation Program (NDIS)</strong> ，亲测 Win11 的并不管用。下载完成后，右键 <code>开始菜单</code> - <code>设备管理器</code> ，在网络适配器中找到有线网卡进行设备卸载的同时勾选卸载驱动的选项，然后再安装下载好的驱动并重启就可以解决绿屏问题。</p>
+<blockquote>
+<p>参考资料：<br><a target="_blank" rel="noopener" href="https://www.reddit.com/r/windowsinsiders/comments/vl0zid/issue_with_netadaptercxsys_in_25145_build/idwtb6w/">https://www.reddit.com/r/windowsinsiders/comments/vl0zid/issue_with_netadaptercxsys_in_25145_build/idwtb6w/</a><br><a target="_blank" rel="noopener" href="https://www.realtek.com/zh/component/zoo/category/network-interface-controllers-10-100-1000m-gigabit-ethernet-pci-express-software">https://www.realtek.com/zh/component/zoo/category/network-interface-controllers-10-100-1000m-gigabit-ethernet-pci-express-software</a></p>
+</blockquote>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2022/04/26/oneplus-flash-lineageos/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="Update time"></i>
+              2022-07-09 21:38:18
+            </span>
+            
+                  <span class="post-categories">
+                    <i class="iconfont icon-bookmark" title="Categories"></i>
+                    
+                    <span class="span--category">
+                      <a href="/categories/%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0/" title="折腾笔记">
+                        <b>#</b> 折腾笔记
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="Tags"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/Windows-11/" title="Windows 11">
+                        <b>#</b> Windows 11
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/%E7%BB%BF%E5%B1%8F/" title="绿屏">
+                        <b>#</b> 绿屏
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/NetAdapter-sys/" title="NetAdapter.sys">
+                        <b>#</b> NetAdapter.sys
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/KMODE-EXCEPTION-NOT-HANDLED/" title="KMODE_EXCEPTION_NOT_HANDLED">
+                        <b>#</b> KMODE_EXCEPTION_NOT_HANDLED
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
+        </div>
+      
     </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-text">解决方法</span></a></li></ol>
+      
+    </div>
+  </div>
+
   
-  <nav class="post-navigation">
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-    <span class="page-num">1 / 1</span>
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
     
-  </nav>
-</div>
+  </div>
+
 
         
 <div class="footer">
@@ -415,6 +590,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E4%BF%AE%E5%A4%8D%E2%80%9CNetAdapter.sys%E2%80%9D%E5%AF%BC%E8%87%B4%20Win11%20%E7%9A%84%E7%BB%BF%E5%B1%8F%E9%97%AE%E9%A2%98 + '&url=' + http%3A%2F%2Fblog.secretbase.cn%2F2022%2F07%2F09%2FFixGSODNetdapter-sys%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://blog.secretbase.cn/2022/07/09/FixGSODNetdapter-sys/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
