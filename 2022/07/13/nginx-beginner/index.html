@@ -11,7 +11,7 @@
   
   <title>
     
-      修复“NetAdapter.sys”导致 Win11 的绿屏问题 
+      Nginx 的安装与简单配置 
       
       
       |
@@ -164,19 +164,19 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">修复“NetAdapter.sys”导致 Win11 的绿屏问题</div>
+      <div class="post-title">Nginx 的安装与简单配置</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime" title="Update time"></i>
-          2022-07-09 21:38:18
+          2022-07-13 21:32:01
         </span>
         
               <span class="post-categories">
                 <i class="iconfont icon-bookmark" title="Categories"></i>
                 
                 <span class="span--category">
-                  <a href="/categories/%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0/" title="折腾笔记">
-                    <b>#</b> 折腾笔记
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="学习笔记">
+                    <b>#</b> 学习笔记
                   </a>
                 </span>
                 
@@ -186,26 +186,20 @@
                 <i class="iconfont icon-tags" title="Tags"></i>
                 
                 <span class="span--tag">
-                  <a href="/tags/Windows-11/" title="Windows 11">
-                    <b>#</b> Windows 11
+                  <a href="/tags/Nginx/" title="Nginx">
+                    <b>#</b> Nginx
                   </a>
                 </span>
                 
                 <span class="span--tag">
-                  <a href="/tags/%E7%BB%BF%E5%B1%8F/" title="绿屏">
-                    <b>#</b> 绿屏
+                  <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="服务器">
+                    <b>#</b> 服务器
                   </a>
                 </span>
                 
                 <span class="span--tag">
-                  <a href="/tags/NetAdapter-sys/" title="NetAdapter.sys">
-                    <b>#</b> NetAdapter.sys
-                  </a>
-                </span>
-                
-                <span class="span--tag">
-                  <a href="/tags/KMODE-EXCEPTION-NOT-HANDLED/" title="KMODE_EXCEPTION_NOT_HANDLED">
-                    <b>#</b> KMODE_EXCEPTION_NOT_HANDLED
+                  <a href="/tags/%E8%85%BE%E8%AE%AF%E4%BA%91/" title="腾讯云">
+                    <b>#</b> 腾讯云
                   </a>
                 </span>
                 
@@ -213,12 +207,39 @@
           
       </div>
       <div class="markdown-body">
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>我的电脑用的是 Win11 的 Dev 版本，系统的更新就会比较频繁，由于以前从来没有因为更新而导致系统出现问题，让我备份的意识变得极为淡薄，一般都不会去想着在更新前备份一下。在更新到 25151 版本后，刚开始是偶尔会出现绿屏现象，也没有在意；直到前几天就出现开机不超过半个小时就会出现绿屏现象，严重影响了使用的体验。</p>
-<p>绿屏的提示为终止代码：KMODE_EXCEPTION_NOT_HANDLED，失败的操作：NetAdapter.sys。</p>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>经过多方的查阅发现是由于可以通过更新网卡的驱动解决。首先进入 Realtek 的官网下载驱动，<a target="_blank" rel="noopener" href="https://www.realtek.com/en/component/zoo/category/network-interface-controllers-10-100-1000m-gigabit-ethernet-pci-express-software">https://www.realtek.com/en/component/zoo/category/network-interface-controllers-10-100-1000m-gigabit-ethernet-pci-express-software</a>。</p>
-<p>在网页中不要选择 **Win11 Auto Installation Program (NetAdapterCx)**，而是应该选择 <strong>Win10 Auto Installation Program (NDIS)</strong> ，亲测 Win11 的并不管用。下载完成后，右键 <code>开始菜单</code> - <code>设备管理器</code> ，在网络适配器中找到有线网卡进行设备卸载的同时勾选卸载驱动的选项，然后再安装下载好的驱动并重启就可以解决绿屏问题。</p>
+        <blockquote>
+<p>适用于 Debian 11（bullseye），Nginx 1.18.0</p>
+</blockquote>
+<h2 id="Nginx-的安装"><a href="#Nginx-的安装" class="headerlink" title="Nginx 的安装"></a>Nginx 的安装</h2><p>一般来说目前主流的 Linux 发行版的软件仓库中都会含有 Nginx，可以直接通过系统自带的包管理器进行按转，Debian 则是使用 <code>apt</code> 进行安装。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install enginx</span><br></pre></td></tr></table></figure>
+
+<p>安装好后，访问服务器的 ip 出现如下页面，即为安装成功了。</p>
+<p><img src="https://img.secretbase.cn/img/(nginx-beginner)202207132300074.png" alt="Nginx 默认页面"></p>
+<h2 id="简单配置"><a href="#简单配置" class="headerlink" title="简单配置"></a>简单配置</h2><p>Nginx 提供了许多的配置方式：</p>
+<ol>
+<li>直接修改 <code>/etc/nginx/nginx.conf</code> 里面的内容，如果需要配置多站点不建议使用此方法。</li>
+<li>在 <code>/etc/nginx/conf.d</code> 或 <code>/etc/nginx/sites-enabled</code> 目录下创建配置文件，查看 <code>etc/nginx/nginx.conf</code> 文件即可发现 Nginx 早就已经将这两个目录下的设置为虚拟主机的配置目录。</li>
+</ol>
+<h3 id="以部署此博客为示例"><a href="#以部署此博客为示例" class="headerlink" title="以部署此博客为示例"></a>以部署此博客为示例</h3><p>首先将网站的静态资源部署在服务器上。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建网站根目录，可以根据个人喜好设置目录</span></span><br><span class="line"><span class="built_in">mkdir</span> /www/wwwroot/www.example.com</span><br><span class="line"><span class="comment"># 将网站的资源部署在根目录下，可自行选择使用 scp 软件或克隆 github page。</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/duan-1/duan-1.github.io.git</span><br></pre></td></tr></table></figure>
+
+<p>网站部署完成后，则需要进行 Nginx 的配置，否则无法正常访问页面。在 <code>/etc/nginx/conf.d</code> 目录下创建配置文件 <code>www.conf</code> ，可根据个人喜好设置易于辨识的文件名，编辑内容如下。</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">	<span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">	<span class="comment"># 如果只需要ip访问则可以忽略server_name选项</span></span><br><span class="line">	<span class="attribute">server_name</span> www.example.com;</span><br><span class="line"></span><br><span class="line">	<span class="section">location</span> / &#123;</span><br><span class="line">		<span class="attribute">root</span> /www/wwwroot/www.example.com;</span><br><span class="line">		<span class="attribute">index</span> index.html;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>保存配置文件后，可以运行命令 <code>nginx -t</code> 来检查配置文件是否有错误，有错误则根据提示进行修改，无错误则会输出如下内容。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nginx: the configuration file /etc/nginx/nginx.conf syntax is ok</span><br><span class="line">nginx: configuration file /etc/nginx/nginx.conf test is successful</span><br></pre></td></tr></table></figure>
+
+<p>确认无误后，运行命令 <code>nginx -s reload</code> 重载 Nginx 服务，随后即可通过 ip 或域名访问网站。</p>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="配置好后通过-ip-访问网站还是-Nginx-的默认页面"><a href="#配置好后通过-ip-访问网站还是-Nginx-的默认页面" class="headerlink" title="配置好后通过 ip 访问网站还是 Nginx 的默认页面"></a>配置好后通过 ip 访问网站还是 Nginx 的默认页面</h3><p>在 <code>/etc/nginx/sites-enabled</code> 目录下有一个配置文件设置了 <code>listen 80 default_server</code>，后面的 default_server 强制监听了 ip 访问。如果在一开始设置了监听域名，则会出现域名正常访问，而 ip 是默认页面。可以选择删除这个默认配置，也可以将 <code>/etc/nginx/nginx.conf</code> 里面的 <code>include /etc/nginx/sites-enable/*</code> 这一行注释掉。</p>
+<h3 id="浏览器访问时地址栏显示不安全"><a href="#浏览器访问时地址栏显示不安全" class="headerlink" title="浏览器访问时地址栏显示不安全"></a>浏览器访问时地址栏显示不安全</h3><p>启用 SSL 即可解决。首先需要申请 SSL 证书，然后将证书上传至服务器后（建议在 <code>/etc/nginx</code> 目录下创建 <code>cert</code> 目录），在配置文件中新增如下内容。</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#以下属性中，以ssl开头的属性表示与证书配置有关。</span></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">443</span> ssl;</span><br><span class="line">    <span class="comment">#配置HTTPS的默认访问端口为443。</span></span><br><span class="line">    <span class="comment">#如果未在此处配置HTTPS的默认访问端口，可能会造成Nginx无法启动。</span></span><br><span class="line">	<span class="comment">#将www.example.com替换成证书绑定的域名。</span></span><br><span class="line">    <span class="attribute">server_name</span> www.example.com;</span><br><span class="line">	<span class="comment">#将cert-file-name.pem替换成已上传的证书文件的名称。</span></span><br><span class="line">    <span class="attribute">ssl_certificate</span> cert/cert-file-name.pem;</span><br><span class="line">	<span class="comment">#将cert-file-name.key替换成已上传的证书私钥文件的名称。</span></span><br><span class="line">    <span class="attribute">ssl_certificate_key</span> cert/cert-file-name.key;</span><br><span class="line">    <span class="attribute">ssl_session_timeout</span> <span class="number">5m</span>;</span><br><span class="line">    <span class="attribute">ssl_ciphers</span> ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><br><span class="line">    <span class="comment">#表示使用的加密套件的类型。</span></span><br><span class="line">    <span class="attribute">ssl_protocols</span> TLSv1.<span class="number">1</span> TLSv1.<span class="number">2</span> TLSv1.<span class="number">3</span>; <span class="comment">#表示使用的TLS协议的类型。</span></span><br><span class="line">    <span class="attribute">ssl_prefer_server_ciphers</span> <span class="literal">on</span>;</span><br><span class="line">    <span class="section">location</span> / &#123;</span><br><span class="line">        <span class="attribute">root</span> /www/wwwroot/www.example.com;  <span class="comment">#Web网站程序存放目录。</span></span><br><span class="line">        <span class="attribute">index</span> index.html;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>保存后按照正文的步骤重载 Nginx，即可进行 HTTPS 访问。</p>
+<h3 id="配置-SSL-后访问还是默认服务-HTTP"><a href="#配置-SSL-后访问还是默认服务-HTTP" class="headerlink" title="配置 SSL 后访问还是默认服务 HTTP"></a>配置 SSL 后访问还是默认服务 HTTP</h3><p>开启强制 HTTP，添加 <code>rewrite ^(.*)$ https://$host$1;</code> 到配置文件中，然后重载 Nginx 即可。</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">	<span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">	<span class="comment"># 如果只需要ip访问则可以忽略server_name选项</span></span><br><span class="line">	<span class="attribute">server_name</span> www.example.com;</span><br><span class="line"></span><br><span class="line">	<span class="comment"># 将所有HTTP请求通过rewrite指令重定向到HTTPS。</span></span><br><span class="line">	<span class="attribute">rewrite</span><span class="regexp"> ^(.*)$</span> https://<span class="variable">$host</span><span class="variable">$1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="section">location</span> / &#123;</span><br><span class="line">		<span class="attribute">root</span> /www/wwwroot/www.example.com;</span><br><span class="line">		<span class="attribute">index</span> index.html;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <blockquote>
-<p>参考资料：<br><a target="_blank" rel="noopener" href="https://www.reddit.com/r/windowsinsiders/comments/vl0zid/issue_with_netadaptercxsys_in_25145_build/idwtb6w/">https://www.reddit.com/r/windowsinsiders/comments/vl0zid/issue_with_netadaptercxsys_in_25145_build/idwtb6w/</a><br><a target="_blank" rel="noopener" href="https://www.realtek.com/zh/component/zoo/category/network-interface-controllers-10-100-1000m-gigabit-ethernet-pci-express-software">https://www.realtek.com/zh/component/zoo/category/network-interface-controllers-10-100-1000m-gigabit-ethernet-pci-express-software</a></p>
+<p>参考资料：<br><a target="_blank" rel="noopener" href="https://nginx.org/en/docs/">https://nginx.org/en/docs/</a><br><a target="_blank" rel="noopener" href="https://help.aliyun.com/document_detail/98728.html">https://help.aliyun.com/document_detail/98728.html</a></p>
 </blockquote>
 
       </div>
@@ -226,7 +247,7 @@
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2022/04/26/oneplus-flash-lineageos/" target="_self">
+              <a href="/2022/07/09/FixGSODNetdapter-sys/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>Prev</span>
               </a>
@@ -235,15 +256,15 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime" title="Update time"></i>
-              2022-07-09 21:38:18
+              2022-07-13 21:32:01
             </span>
             
                   <span class="post-categories">
                     <i class="iconfont icon-bookmark" title="Categories"></i>
                     
                     <span class="span--category">
-                      <a href="/categories/%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0/" title="折腾笔记">
-                        <b>#</b> 折腾笔记
+                      <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="学习笔记">
+                        <b>#</b> 学习笔记
                       </a>
                     </span>
                     
@@ -253,26 +274,20 @@
                     <i class="iconfont icon-tags" title="Tags"></i>
                     
                     <span class="span--tag">
-                      <a href="/tags/Windows-11/" title="Windows 11">
-                        <b>#</b> Windows 11
+                      <a href="/tags/Nginx/" title="Nginx">
+                        <b>#</b> Nginx
                       </a>
                     </span>
                     
                     <span class="span--tag">
-                      <a href="/tags/%E7%BB%BF%E5%B1%8F/" title="绿屏">
-                        <b>#</b> 绿屏
+                      <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="服务器">
+                        <b>#</b> 服务器
                       </a>
                     </span>
                     
                     <span class="span--tag">
-                      <a href="/tags/NetAdapter-sys/" title="NetAdapter.sys">
-                        <b>#</b> NetAdapter.sys
-                      </a>
-                    </span>
-                    
-                    <span class="span--tag">
-                      <a href="/tags/KMODE-EXCEPTION-NOT-HANDLED/" title="KMODE_EXCEPTION_NOT_HANDLED">
-                        <b>#</b> KMODE_EXCEPTION_NOT_HANDLED
+                      <a href="/tags/%E8%85%BE%E8%AE%AF%E4%BA%91/" title="腾讯云">
+                        <b>#</b> 腾讯云
                       </a>
                     </span>
                     
@@ -280,11 +295,6 @@
               
           </div>
           <div class="post-foot-prev">
-            
-              <a href="/2022/07/13/nginx-beginner/" target="_self">
-                <span>Next</span>
-                <i class="iconfont icon-chevronright"></i>
-              </a>
             
           </div>
         </div>
@@ -298,7 +308,7 @@
     <div class="title">Contents</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-text">解决方法</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx-%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-text">Nginx 的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE"><span class="toc-text">简单配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A5%E9%83%A8%E7%BD%B2%E6%AD%A4%E5%8D%9A%E5%AE%A2%E4%B8%BA%E7%A4%BA%E4%BE%8B"><span class="toc-text">以部署此博客为示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="toc-text">常见问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%A5%BD%E5%90%8E%E9%80%9A%E8%BF%87-ip-%E8%AE%BF%E9%97%AE%E7%BD%91%E7%AB%99%E8%BF%98%E6%98%AF-Nginx-%E7%9A%84%E9%BB%98%E8%AE%A4%E9%A1%B5%E9%9D%A2"><span class="toc-text">配置好后通过 ip 访问网站还是 Nginx 的默认页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AE%BF%E9%97%AE%E6%97%B6%E5%9C%B0%E5%9D%80%E6%A0%8F%E6%98%BE%E7%A4%BA%E4%B8%8D%E5%AE%89%E5%85%A8"><span class="toc-text">浏览器访问时地址栏显示不安全</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-SSL-%E5%90%8E%E8%AE%BF%E9%97%AE%E8%BF%98%E6%98%AF%E9%BB%98%E8%AE%A4%E6%9C%8D%E5%8A%A1-HTTP"><span class="toc-text">配置 SSL 后访问还是默认服务 HTTP</span></a></li></ol></li></ol>
       
     </div>
   </div>
@@ -602,12 +612,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E4%BF%AE%E5%A4%8D%E2%80%9CNetAdapter.sys%E2%80%9D%E5%AF%BC%E8%87%B4%20Win11%20%E7%9A%84%E7%BB%BF%E5%B1%8F%E9%97%AE%E9%A2%98 + '&url=' + http%3A%2F%2Fblog.secretbase.cn%2F2022%2F07%2F09%2FFixGSODNetdapter-sys%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + Nginx%20%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE + '&url=' + http%3A%2F%2Fblog.secretbase.cn%2F2022%2F07%2F13%2Fnginx-beginner%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://blog.secretbase.cn/2022/07/09/FixGSODNetdapter-sys/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://blog.secretbase.cn/2022/07/13/nginx-beginner/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         
