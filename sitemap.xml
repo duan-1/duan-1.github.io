@@ -2,29 +2,32 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://blog.secretbase.cn/</loc>
+    <lastmod>2024-06-05T16:16:00+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.secretbase.cn/posts/</loc>
+    <lastmod>2024-06-05T16:16:00+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.secretbase.cn/posts/deploy-webhook/</loc>
+    <lastmod>2024-06-05T16:16:00+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.secretbase.cn/posts/my-first-post/</loc>
     <lastmod>2024-05-17T14:57:30+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2024-05-17T14:57:30+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/my-first-post/</loc>
-    <lastmod>2024-05-17T14:57:30+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/page/</loc>
+    <loc>https://blog.secretbase.cn/page/</loc>
     <lastmod>2024-05-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/page/archives/</loc>
+    <loc>https://blog.secretbase.cn/page/archives/</loc>
     <lastmod>2024-05-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://blog.secretbase.cn/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://blog.secretbase.cn/tags/</loc>
   </url><url>
-    <loc>http://localhost:1313/page/about/</loc>
+    <loc>https://blog.secretbase.cn/page/about/</loc>
   </url><url>
-    <loc>http://localhost:1313/page/search/</loc>
+    <loc>https://blog.secretbase.cn/page/search/</loc>
   </url><url>
-    <loc>http://localhost:1313/page/links/</loc>
+    <loc>https://blog.secretbase.cn/page/links/</loc>
   </url>
 </urlset>
