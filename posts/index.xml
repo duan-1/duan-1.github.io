@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Posts on 端言端语</title>
-        <link>https://blog.secretbase.cn/posts/</link>
+        <link>http://localhost:1313/posts/</link>
         <description>Recent content in Posts on 端言端语</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Fri, 17 May 2024 14:57:30 +0800</lastBuildDate><atom:link href="https://blog.secretbase.cn/posts/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 17 May 2024 14:57:30 +0800</lastBuildDate><atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>第一篇博文</title>
-        <link>https://blog.secretbase.cn/posts/my-first-post/</link>
+        <link>http://localhost:1313/posts/my-first-post/</link>
         <pubDate>Fri, 17 May 2024 14:57:30 +0800</pubDate>
         
-        <guid>https://blog.secretbase.cn/posts/my-first-post/</guid>
+        <guid>http://localhost:1313/posts/my-first-post/</guid>
         <description>&lt;h2 id=&#34;你好世界&#34;&gt;你好，世界
 &lt;/h2&gt;&lt;p&gt;在毕业后的第二年，我又重启了我的博客计划。以前一直想写博客，但是因为种种原因，一直没有坚持下来，以前总是会在每隔一年就会选择换一个博客框架。说是撰写博客，不如是折腾如何去搭建博客。从大一时接触到 Wordpress，然后换成了 Typecho,之后又换成了 Hexo,到现在的 Hugo。&lt;/p&gt;
 &lt;h2 id=&#34;为什么要写博客&#34;&gt;为什么要写博客
