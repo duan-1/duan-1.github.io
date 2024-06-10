@@ -3,13 +3,19 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://blog.secretbase.cn/</loc>
-    <lastmod>2024-06-05T16:16:00+08:00</lastmod>
+    <lastmod>2024-06-10T19:22:33+08:00</lastmod>
   </url><url>
     <loc>https://blog.secretbase.cn/categories/</loc>
-    <lastmod>2024-06-05T16:16:00+08:00</lastmod>
+    <lastmod>2024-06-10T19:22:33+08:00</lastmod>
   </url><url>
     <loc>https://blog.secretbase.cn/posts/</loc>
-    <lastmod>2024-06-05T16:16:00+08:00</lastmod>
+    <lastmod>2024-06-10T19:22:33+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.secretbase.cn/posts/duanwuevent/</loc>
+    <lastmod>2024-06-10T19:22:33+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.secretbase.cn/categories/%E9%9A%8F%E7%AC%94/</loc>
+    <lastmod>2024-06-10T19:22:33+08:00</lastmod>
   </url><url>
     <loc>https://blog.secretbase.cn/posts/deploy-webhook/</loc>
     <lastmod>2024-06-05T16:16:00+08:00</lastmod>
@@ -18,9 +24,6 @@
     <lastmod>2024-06-05T16:16:00+08:00</lastmod>
   </url><url>
     <loc>https://blog.secretbase.cn/posts/my-first-post/</loc>
-    <lastmod>2024-05-17T14:57:30+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.secretbase.cn/categories/%E9%9A%8F%E7%AC%94/</loc>
     <lastmod>2024-05-17T14:57:30+08:00</lastmod>
   </url><url>
     <loc>https://blog.secretbase.cn/page/</loc>
