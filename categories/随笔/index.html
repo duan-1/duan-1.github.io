@@ -17,24 +17,27 @@
 
   
 
-<style>
+<script>
+    (function(d) {
+      var config = {
+        kitId: 'mma5suc',
+        scriptTimeout: 3000,
+        async: true
+      },
+      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+    })(document);
+</script>
+  <style>
     @font-face {
         font-family: 'JetBrains Mono';
         src: url('/fonts/JetBrainsMono-Regular.woff2') format('woff2');
     }
-    @font-face {
-        font-family: '思源宋体';
-        src: url('/fonts/SourceHanSerifSC-VF.ttf.woff2') format('woff2');
-    }
-    @font-face {
-        font-family: '思源黑体';
-        src: url('/fonts/SourceHanSansSC-VF.ttf.woff2') format('woff2');
-    }
      
     :root {
-        --base-font-family: -apple-system,'思源宋体';
+        --base-font-family: -apple-system, source-han-serif-cn-subset;
         --code-font-family: 'JetBrains Mono';
     }
+     
 </style>
     </head>
     <body class="">
