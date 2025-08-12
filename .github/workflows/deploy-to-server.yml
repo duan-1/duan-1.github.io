@@ -1,8 +1,7 @@
-# .github/workflows/deploy-to-server.yml
+# deploy-to-server.yml
 
 name: Deploy to Cloud Server
 
-# 触发条件：当 main 分支有新的 push 时
 on:
   push:
     branches:
@@ -11,28 +10,22 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       # 步骤一：检出代码
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # 步骤二：部署到服务器
-      - name: Deploy to Server via Rsync
-        uses: burnett01/rsync-deploy@v7 # 使用专门的 rsync 部署 Action
+      # 步骤二：设置 SSH 环境
+      # 这个 Action 的作用是把你的私钥加载到 SSH Agent 中，以便后续的 ssh 和 rsync 命令使用
+      - name: Setup SSH Agent
+        uses: webfactory/ssh-agent@v0.9.0
         with:
-          # rsync 的参数，-avzr 表示归档、详细、压缩、递归
-          # --delete 表示删除服务器上多余的文件
-          switches: -avzr --delete
-          # 源目录，'./' 表示仓库的根目录，也就是 runner 上的所有博客文件
-          path: ./
-          # 远程服务器的目标路径
-          remote_path: ${{ secrets.DEPLOY_TARGET }}
-          # 远程服务器的地址
-          remote_host: ${{ secrets.DEPLOY_HOST }}
-          # 远程服务器的用户名
-          remote_user: ${{ secrets.DEPLOY_USER }}
-          # 远程服务器的自定义端口
-          remote_port: ${{ secrets.DEPLOY_PORT }}
-          # SSH 私钥
-          remote_key: ${{ secrets.DEPLOY_KEY }}
+          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+
+      # 步骤三：使用 rsync 进行部署
+      - name: Deploy with rsync
+        run: |
+          rsync -avz --delete \
+          -e "ssh -p ${{ secrets.DEPLOY_PORT }} -o StrictHostKeyChecking=no" \
+          ./ \
+          ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_TARGET }}
