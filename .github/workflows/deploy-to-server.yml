@@ -18,16 +18,21 @@ jobs:
         uses: actions/checkout@v4
 
       # 步骤二：部署到服务器
-      - name: Deploy to Server
-        uses: appleboy/ssh-action@master
+      - name: Deploy to Server via Rsync
+        uses: burnett01/rsync-deploy@v7 # 使用专门的 rsync 部署 Action
         with:
-          # 通过 secrets 传入服务器地址、用户名和 SSH 私钥
-          host: ${{ secrets.DEPLOY_HOST }}
-          username: ${{ secrets.DEPLOY_USER }}
-          key: ${{ secrets.DEPLOY_KEY }}
-          # 从 Secret 中读取你的自定义端口号
-          port: ${{ secrets.DEPLOY_PORT }}
-          
-          # 在服务器上执行的脚本
-          script: |
-            rsync -avz --delete ./ ${{ secrets.DEPLOY_TARGET }}
+          # rsync 的参数，-avzr 表示归档、详细、压缩、递归
+          # --delete 表示删除服务器上多余的文件
+          switches: -avzr --delete
+          # 源目录，'./' 表示仓库的根目录，也就是 runner 上的所有博客文件
+          path: ./
+          # 远程服务器的目标路径
+          remote_path: ${{ secrets.DEPLOY_TARGET }}
+          # 远程服务器的地址
+          remote_host: ${{ secrets.DEPLOY_HOST }}
+          # 远程服务器的用户名
+          remote_user: ${{ secrets.DEPLOY_USER }}
+          # 远程服务器的自定义端口
+          remote_port: ${{ secrets.DEPLOY_PORT }}
+          # SSH 私钥
+          remote_key: ${{ secrets.DEPLOY_KEY }}
