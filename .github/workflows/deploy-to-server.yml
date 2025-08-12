@@ -1,0 +1,37 @@
+# .github/workflows/deploy-to-server.yml
+
+name: Deploy to Cloud Server
+
+# 触发条件：当 main 分支有新的 push 时
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 步骤一：检出代码
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 步骤二：部署到服务器
+      # 我们使用一个专门用于 rsync 部署的 Action，非常方便
+      - name: Deploy to Server via Rsync
+        uses: easing-themes/ssh-deploy@main
+        env:
+          # SSH 部署所需的私钥
+          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
+          # rsync 的参数，-avz 表示归档、详细、压缩模式
+          # --delete 表示删除服务器上多余的文件，保持与仓库完全同步
+          ARGS: "-avz --delete"
+          # 源目录，'.' 表示仓库的根目录
+          SOURCE: "./"
+          # 远程服务器的地址
+          REMOTE_HOST: ${{ secrets.DEPLOY_HOST }}
+          # 远程服务器的用户名
+          REMOTE_USER: ${{ secrets.DEPLOY_USER }}
+          # 部署的目标目录
+          TARGET: ${{ secrets.DEPLOY_TARGET }}
